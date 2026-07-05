@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const products = [
         {
             id: 'kurti-amodini',
-            name: 'Amodini Cotton Kurti',
-            price: 8900,
+            name: 'Peacock Feather Kurti',
+            price: 2000,
             category: 'kurtis',
             image: 'product_kurta_floral_1.jpeg',
             tag: 'Bestseller',
@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'kurta-chandra',
-            name: 'Chandra Khadi Kurti',
-            price: 7200,
+            name: 'Lotus Kurti',
+            price: 1700,
             category: 'kurtis',
             image: 'product_kurta_floral_2.jpeg',
             tag: null,
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'kurta-anarkali',
-            name: 'Pushpa Linen Anarkali Kurti',
-            price: 12400,
+            name: 'Gold Poo Kurti',
+            price: 1500,
             category: 'kurtis',
             image: 'product_kurta_floral_3.jpeg',
             tag: 'New',
@@ -484,13 +484,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderShopProducts() {
         if (!shopProductsContainer) return;
         
+        const launchingSoonCategories = ['sarees', 'dupattas', 'totes'];
         let filtered = products;
-        if (currentFilter !== 'all') {
+        if (currentFilter === 'all') {
+            filtered = products.filter(p => !launchingSoonCategories.includes(p.category));
+        } else {
             filtered = products.filter(p => p.category === currentFilter);
         }
 
         // For selected categories, show a "Launching soon" placeholder instead of product listings
-        const launchingSoonCategories = ['sarees', 'dupattas', 'totes'];
         if (currentFilter !== 'all' && launchingSoonCategories.includes(currentFilter)) {
             shopProductsContainer.classList.remove('d-none');
             shopEmptyState.classList.add('d-none');
