@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Amodini Cotton Kurti',
             price: 8900,
             category: 'kurtis',
-            image: 'product_kurta_floral.png',
+            image: 'product_kurta_floral_1.jpeg',
             tag: 'Bestseller',
             date: '2026-01-20',
             featured: true,
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Chandra Khadi Kurti',
             price: 7200,
             category: 'kurtis',
-            image: 'product_kurta_floral.png',
+            image: 'product_kurta_floral_2.jpeg',
             tag: null,
             date: '2026-04-18',
             featured: false,
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Pushpa Linen Anarkali Kurti',
             price: 12400,
             category: 'kurtis',
-            image: 'product_kurta_floral.png',
+            image: 'product_kurta_floral_3.jpeg',
             tag: 'New',
             date: '2026-05-28',
             featured: false,
@@ -143,29 +143,17 @@ document.addEventListener('DOMContentLoaded', () => {
             options: ['Strap: Leather (Standard 10" drop)']
         },
         {
-            id: 'frock-aarohi',
-            name: 'Aarohi Botanical Cotton Frock',
-            price: 5800,
-            category: 'frocks',
-            image: 'product_kurta_floral.png',
+            id: 'men-kurta',
+            name: 'Men Cotton Kurta',
+            price: 1499,
+            category: 'kurtas',
+            image: 'product_kurta_floral_men_1.jpeg',
             tag: 'New',
             date: '2026-06-12',
             featured: false,
             description: 'Handcrafted kids frock made of pure organic cotton. Features hand-painted playful butterflies and botanical marigolds on the skirt. Safe, organic fabric paints used.',
             options: ['Age: 2-3 Years', 'Age: 4-5 Years', 'Age: 6-7 Years']
         },
-        {
-            id: 'frock-kashvi',
-            name: 'Kashvi Peacock Cotton Frock',
-            price: 6200,
-            category: 'frocks',
-            image: 'product_kurta_floral.png',
-            tag: null,
-            date: '2026-05-20',
-            featured: false,
-            description: 'A cute cotton frock with hand-painted peacock feather motifs in bright turquoise and yellow, tailored with a soft cotton inner lining and comfortable fit.',
-            options: ['Age: 2-3 Years', 'Age: 4-5 Years', 'Age: 6-7 Years']
-        }
     ];
 
     // ==========================================================================
@@ -281,7 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'sarees': 'Hand-Painted Silk & Organza Sarees',
             'dupattas': 'Designer Hand-Painted Dupattas',
             'totes': 'Canvas Botanical Tote Bags',
-            'frocks': "Kids' Cotton Frocks"
+            'frocks': "Kids' Cotton Frocks",
+            'kurtas': 'Hand-Painted Kurtis'
         };
 
         const categoryDescs = {
@@ -290,7 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'sarees': 'Drape yourself in stories. Premium mulberry silks and translucent organzas hand-painted with peacocks, lotuses, and classic floral vines.',
             'dupattas': 'Ethereal overlays. Floating layers of sheer organza and georgette hand-painted with signature botanical art.',
             'totes': 'Durable daily canvases. Thick organic canvas tote bags decorated with hand-drawn botanical illustrations and finished with leather straps.',
-            'frocks': 'Pure cotton and linen frocks for kids, hand-painted with playful floral patterns and whimsical butterfly details using organic, child-safe binders.'
+            'frocks': 'Pure cotton and linen frocks for kids, hand-painted with playful floral patterns and whimsical butterfly details using organic, child-safe binders.',
+            'kurtas': 'Bespoke tailored garments crafted from pure cottons and linens, detailed with delicate paint brushstrokes and metallic outlines.'
         };
 
         const titleEl = document.getElementById('shop-category-title');
