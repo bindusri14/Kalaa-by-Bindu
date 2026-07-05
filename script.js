@@ -143,6 +143,18 @@ document.addEventListener('DOMContentLoaded', () => {
             options: ['Strap: Leather (Standard 10" drop)']
         },
         {
+            id: 'frock-sunshine',
+            name: 'Sunshine Cotton Frock',
+            price: 2499,
+            category: 'frocks',
+            image: 'product_frock_1.jpeg',
+            tag: 'New',
+            date: '2026-06-05',
+            featured: true,
+            description: 'Playful organic cotton frock for kids with hand-painted sunshine and floral motifs. Soft, breathable, and finished with gentle hides for comfort.',
+            options: ['Age: 2-3 Years', 'Age: 4-5 Years', 'Age: 6-7 Years']
+        },
+        {
             id: 'men-kurta',
             name: 'Men Cotton Kurta',
             price: 1499,
@@ -476,6 +488,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentFilter !== 'all') {
             filtered = products.filter(p => p.category === currentFilter);
         }
+
+        // For selected categories, show a "Launching soon" placeholder instead of product listings
+        const launchingSoonCategories = ['sarees', 'dupattas', 'totes'];
+        if (currentFilter !== 'all' && launchingSoonCategories.includes(currentFilter)) {
+            shopProductsContainer.classList.remove('d-none');
+            shopEmptyState.classList.add('d-none');
+            shopProductsContainer.innerHTML = `
+                <div class="shop-launching-soon reveal-fade" style="text-align:center;padding:80px 0;">
+                    <p class="empty-message" style="font-size:1.25rem;font-weight:600;">Launching soon</p>
+                    <p style="margin-top:6px;color:var(--muted,#666);">This collection will be available shortly. Stay tuned.</p>
+                </div>
+            `;
+            observeScrollReveals();
+            return;
+        }
         
         if (currentSort === 'price-low') {
             filtered.sort((a, b) => a.price - b.price);
@@ -509,8 +536,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderFeaturedProducts() {
         if (!featuredProductsContainer) return;
-        
-        const featured = products.filter(p => p.featured).slice(0, 3);
+        // Exclude categories that are launching soon from the featured gallery
+        const launchingSoonCategories = ['sarees', 'dupattas', 'totes'];
+        const featured = products.filter(p => p.featured && !launchingSoonCategories.includes(p.category)).slice(0, 3);
         featuredProductsContainer.innerHTML = '';
         
         featured.forEach(p => {
