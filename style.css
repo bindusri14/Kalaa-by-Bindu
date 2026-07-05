@@ -69,6 +69,50 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Subtle animated background gradient aurora */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(200, 92, 64, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 80%, rgba(10, 108, 81, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 110%, rgba(229, 169, 60, 0.04) 0%, transparent 60%);
+    animation: bg-aurora-drift 18s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes bg-aurora-drift {
+    0% {
+        background:
+            radial-gradient(ellipse 80% 60% at 10% 20%, rgba(200, 92, 64, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 90% 80%, rgba(10, 108, 81, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 50% 110%, rgba(229, 169, 60, 0.04) 0%, transparent 60%);
+    }
+    33% {
+        background:
+            radial-gradient(ellipse 80% 60% at 30% 60%, rgba(200, 92, 64, 0.05) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 70% 20%, rgba(10, 108, 81, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 20% 80%, rgba(229, 169, 60, 0.04) 0%, transparent 60%);
+    }
+    66% {
+        background:
+            radial-gradient(ellipse 80% 60% at 80% 40%, rgba(28, 46, 74, 0.03) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 20% 90%, rgba(200, 92, 64, 0.05) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 70% 30%, rgba(229, 169, 60, 0.04) 0%, transparent 60%);
+    }
+    100% {
+        background:
+            radial-gradient(ellipse 80% 60% at 60% 80%, rgba(10, 108, 81, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 30% 10%, rgba(229, 169, 60, 0.05) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 90% 60%, rgba(200, 92, 64, 0.04) 0%, transparent 60%);
+    }
+}
+
 /* --- Scrollbar Customization --- */
 ::-webkit-scrollbar {
     width: 8px;
@@ -331,7 +375,6 @@ a {
 
 .header-container {
     width: 100%;
-    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
@@ -363,12 +406,15 @@ a {
     transform: scale(1.06) rotate(5deg);
 }
 
-.logo-accent {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--terracotta);
-    margin-left: 4px;
+/* Logo icon-only mode — just the image acting as home button */
+.logo-icon-only {
+    font-size: 0;
+    padding: 0;
+    background: none;
+}
+
+.logo-icon-only .header-logo-img {
+    margin-right: 0;
 }
 
 /* Nav Menu */
@@ -661,12 +707,250 @@ a {
     transform: translateY(0);
 }
 
-.hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    line-height: 1.7;
+/* ============================================================
+   BRAND HERO — Animated "Kalaa by Bindu" Title System
+   ============================================================ */
+
+/* Override hero-content to be centered for brand layout */
+.hero-content-brand {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0;
+    padding: 0 40px;
 }
+
+.brand-reveal-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Pre-tag above title */
+.brand-tagline-above {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--terracotta);
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(-12px);
+    animation: brand-pretag-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes brand-pretag-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main Brand Title */
+.brand-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3.8rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 1.0;
+    color: var(--indigo);
+    display: flex;
+    align-items: baseline;
+    gap: 0.25em;
+    margin-bottom: 0;
+}
+
+/* Individual word animation */
+.brand-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px) skewY(3deg);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+}
+
+.brand-word-kalaa {
+    color: var(--indigo);
+    animation: brand-word-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.brand-word-by {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.55em;
+    color: var(--text-muted);
+    align-self: flex-end;
+    padding-bottom: 0.15em;
+    animation: brand-word-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+
+.brand-word-bindu {
+    color: var(--terracotta);
+    font-style: italic;
+    animation: brand-word-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+@keyframes brand-word-rise {
+    to {
+        opacity: 1;
+        transform: translateY(0) skewY(0deg);
+        filter: blur(0);
+    }
+}
+
+/* Horizontal divider line that draws in */
+.brand-divider-line {
+    width: 0;
+    height: 1.5px;
+    background: linear-gradient(to right, transparent, var(--terracotta), var(--mustard), var(--terracotta), transparent);
+    margin: 28px 0 26px;
+    animation: brand-divider-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2.0s forwards;
+}
+
+@keyframes brand-divider-draw {
+    to {
+        width: min(480px, 80vw);
+    }
+}
+
+/* Tagline text beneath divider */
+.brand-tagline {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: brand-tagline-in 1s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
+}
+
+@keyframes brand-tagline-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Action buttons appear last */
+.brand-actions {
+    margin-top: 44px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: brand-actions-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 3.0s forwards;
+    justify-content: center;
+}
+
+@keyframes brand-actions-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   FLOATING INK ORBS — subtle background life
+   ============================================================ */
+.hero-ink-orbs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.ink-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0;
+    animation: orb-float-in 3s ease-out forwards, orb-drift linear infinite;
+}
+
+.ink-orb-1 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(200, 92, 64, 0.12) 0%, transparent 70%);
+    top: 10%;
+    right: 15%;
+    animation: orb-float-in 3s ease-out 0.5s forwards, orb-drift-1 22s ease-in-out 3.5s infinite alternate;
+}
+
+.ink-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(229, 169, 60, 0.08) 0%, transparent 70%);
+    bottom: 15%;
+    right: 5%;
+    animation: orb-float-in 3s ease-out 1.0s forwards, orb-drift-2 28s ease-in-out 4s infinite alternate;
+}
+
+.ink-orb-3 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(10, 108, 81, 0.08) 0%, transparent 70%);
+    top: 40%;
+    right: 30%;
+    animation: orb-float-in 3s ease-out 1.5s forwards, orb-drift-3 20s ease-in-out 4.5s infinite alternate;
+}
+
+@keyframes orb-float-in {
+    to { opacity: 1; }
+}
+
+@keyframes orb-drift-1 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(-40px, 30px) scale(1.1); }
+}
+@keyframes orb-drift-2 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(30px, -50px) scale(0.92); }
+}
+@keyframes orb-drift-3 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(-20px, -30px) scale(1.08); }
+}
+
+/* ============================================================
+   PARALLAX SECTION — section-to-section scroll depth
+   ============================================================ */
+.parallax-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Sections slide up as they enter the viewport (depth feel) */
+.parallax-section:not(.hero-section) {
+    will-change: transform;
+    /* Base visual isolation for layering */
+    isolation: isolate;
+}
+
+/* Pseudo-element depth shim — creates visual border shadow between sections */
+.parallax-section + .parallax-section::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: inherit;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ============================================================
+   Tagline above hero — old styles (kept for compatibility)
+   ============================================================ */
+
 
 .hero-actions {
     display: flex;
@@ -3001,6 +3285,11 @@ a {
         grid-template-columns: repeat(6, 1fr);
         gap: 20px;
     }
+
+    /* Brand hero large screen adjustments */
+    .brand-hero-title {
+        font-size: clamp(3.5rem, 8vw, 7rem);
+    }
 }
 
 /* Tablets (Portrait) */
@@ -3047,23 +3336,33 @@ a {
         display: none; /* Disable hover dropdowns on tablets */
     }
     
-    /* Hero layout */
+    /* Hero layout — brand centered version */
     .hero-section {
         padding-left: 24px;
         padding-right: 24px;
         justify-content: center;
         text-align: center;
-        height: 75vh;
+        height: 80vh;
     }
     .hero-overlay {
         background: radial-gradient(circle at center, rgba(250, 247, 242, 0.92) 0%, rgba(250, 247, 242, 0.8) 100%);
     }
-    .hero-content {
-        max-width: 550px;
-        margin-top: 0;
+    .hero-content-brand {
+        padding: 0 16px;
     }
-    .hero-title { font-size: 2.8rem; }
+    .brand-hero-title {
+        font-size: clamp(2.8rem, 10vw, 4.5rem);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .brand-actions { flex-wrap: wrap; justify-content: center; }
     .hero-actions { justify-content: center; }
+
+    /* Disable section parallax transforms on tablet (too jittery) */
+    .parallax-section:not(.hero-section) {
+        transform: none !important;
+    }
+
     
     /* Grids & Cards */
     .editorial-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -3158,6 +3457,31 @@ a {
     .testimonials-slider-container { padding: 10px 10px; }
     .philosophy-quote { font-size: 1.4rem; line-height: 1.6; }
     .philosophy-section { height: auto; padding: 60px 24px; }
+
+    /* Brand hero mobile */
+    .brand-hero-title {
+        font-size: clamp(2rem, 13vw, 3.2rem);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.15em;
+    }
+    .brand-word-by {
+        align-self: center;
+        padding-bottom: 0;
+    }
+    .brand-tagline {
+        font-size: 0.95rem;
+    }
+    .brand-tagline-above {
+        letter-spacing: 2.5px;
+        font-size: 0.7rem;
+    }
+    .brand-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+    .brand-actions .btn { width: 100%; }
     
     /* Disable / simplify parallax and reveals on mobile for performance */
     .reveal-slide-up {
@@ -3172,5 +3496,9 @@ a {
     }
     .hero-midground {
         display: none !important;
+    }
+    .ink-orb { display: none; }
+    .parallax-section:not(.hero-section) {
+        transform: none !important;
     }
 }

@@ -22,9 +22,8 @@
     <!-- Header Navigation -->
     <header class="main-header" id="main-header">
         <div class="header-container">
-            <a href="#" class="logo" id="header-logo">
+            <a href="#home" class="logo logo-icon-only" id="header-logo" data-view="home" aria-label="Kalaa by Bindu - Return to Homepage">
                 <img src="brand_logo.jpg" alt="Kalaa by Bindu Logo" class="header-logo-img">
-                <span class="logo-text">Kalaa <span class="logo-accent">by Bindu</span></span>
             </a>
             
             <nav class="nav-menu" id="nav-menu">
@@ -74,7 +73,7 @@
         <!-- 1. HOME VIEW -->
         <section id="home-view" class="page-view active">
             <!-- Section 1: Parallax Hero Section -->
-            <section class="hero-section">
+            <section class="hero-section parallax-section" id="hero-section-wrap">
                 <div class="hero-bg" id="hero-bg" style="background-image: url('hero_background.png');"></div>
                 <div class="hero-midground" id="hero-midground">
                     <!-- Looping Paint Stroke SVG -->
@@ -95,15 +94,32 @@
                     </svg>
                 </div>
                 <div class="hero-overlay"></div>
-                <div class="hero-content">
-                    <span class="hero-pretitle">Bespoke Fabric Painting</span>
-                    <h1 class="hero-title" id="hero-headline">Where Fabric Becomes Art</h1>
-                    <p class="hero-subtitle">Artisan apparel and accessories, painted stroke-by-stroke in our boutique studio.</p>
-                    <div class="hero-actions">
-                        <a href="#shop" class="btn btn-primary" data-view="shop">Explore the Collection</a>
-                        <a href="#about" class="btn btn-outline" data-view="about">Our Story</a>
+
+                <!-- Animated floating ink orbs for background life -->
+                <div class="hero-ink-orbs" aria-hidden="true">
+                    <span class="ink-orb ink-orb-1"></span>
+                    <span class="ink-orb ink-orb-2"></span>
+                    <span class="ink-orb ink-orb-3"></span>
+                </div>
+
+                <div class="hero-content hero-content-brand">
+                    <!-- Brand title reveal animation -->
+                    <div class="brand-reveal-wrapper" id="brand-reveal-wrapper">
+                        <div class="brand-tagline-above reveal-pretag">Hand-Crafted Wearable Art</div>
+                        <h1 class="brand-hero-title" id="brand-hero-title">
+                            <span class="brand-word brand-word-kalaa">Kalaa</span>
+                            <span class="brand-word brand-word-by">by</span>
+                            <span class="brand-word brand-word-bindu">Bindu</span>
+                        </h1>
+                        <div class="brand-divider-line" id="brand-divider-line"></div>
+                        <p class="brand-tagline" id="brand-tagline">Hand-Painted. Custom-Crafted. Uniquely Yours.</p>
+                        <div class="hero-actions brand-actions" id="brand-actions">
+                            <a href="#shop" class="btn btn-primary" data-view="shop">Explore the Collection</a>
+                            <a href="#about" class="btn btn-outline" data-view="about">Our Story</a>
+                        </div>
                     </div>
                 </div>
+
                 <div class="hero-scroll-indicator">
                     <div class="mouse-icon">
                         <span class="scroll-wheel"></span>
@@ -113,7 +129,7 @@
             </section>
 
             <!-- Section 2: "What Is Fabric Painting" -->
-            <section class="intro-section section-padding">
+            <!-- <section class="intro-section section-padding parallax-section" id="intro-parallax-section">
                 <div class="container">
                     <div class="editorial-grid">
                         <div class="editorial-content reveal-slide-up">
@@ -123,7 +139,7 @@
                             <p class="teaser-text">Every garment created in our studio is treated as a fresh canvas, hand-stretched and painted using specialized brushes and custom-blended fabric paints that lock permanent color without compromising the natural drape of the textile.</p>
                         </div>
                         <div class="intro-cards-wrapper">
-                            <!-- Staggered Cards -->
+                            
                             <div class="intro-card reveal-slide-up" style="transition-delay: 0.1s;">
                                 <div class="intro-card-icon">✍</div>
                                 <div class="intro-card-info">
@@ -148,10 +164,10 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!-- Section 5: Category Teaser Section (Updated to 5 Categories) -->
-            <section class="categories-section section-padding bg-warm">
+            <section class="categories-section section-padding bg-warm parallax-section" id="categories-parallax-section">
                 <div class="container">
                     <div class="section-header text-center reveal-fade">
                         <span class="section-tag">Curated Collections</span>
@@ -229,7 +245,7 @@
             </section>
 
             <!-- Featured Products -->
-            <section class="featured-products-section section-padding">
+            <section class="featured-products-section section-padding parallax-section" id="featured-parallax-section">
                 <div class="container">
                     <div class="section-header text-center reveal-fade">
                         <span class="section-tag">Signature Pieces</span>
@@ -248,7 +264,7 @@
             </section>
 
             <!-- Section 6: Artist Philosophy Quote -->
-            <section class="philosophy-section">
+            <!-- <section class="philosophy-section parallax-section" id="philosophy-parallax-section">
                 <div class="philosophy-bg" id="philosophy-bg" style="background-image: url('artist_studio.png');"></div>
                 <div class="philosophy-overlay"></div>
                 <div class="container philosophy-container">
@@ -260,10 +276,10 @@
                         <cite class="philosophy-author">&mdash; Bindu, Artist & Founder</cite>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!-- Section 7: Testimonials -->
-            <section class="testimonials-section section-padding bg-warm">
+            <section class="testimonials-section section-padding bg-warm parallax-section" id="testimonials-parallax-section">
                 <div class="container">
                     <div class="section-header text-center reveal-fade">
                         <span class="section-tag">Studio Testimonials</span>
@@ -274,17 +290,17 @@
                         <div class="testimonial-slider" id="testimonial-slider">
                             <div class="testimonial-slide active">
                                 <div class="testimonial-rating">★★★★★</div>
-                                <p class="testimonial-quote">"The Peacock Chiffon Saree I ordered is a masterpiece. The paint feels incredibly soft on the fabric, not stiff at all. I received countless compliments, it is truly wearable art!"</p>
+                                <p class="testimonial-quote">"The Peacock Chiffon Saree felt like wearable art from the moment it arrived. The hand-painted details are delicate, the fabric is soft, and I received so many compliments at my event."</p>
                                 <span class="testimonial-author">&mdash; Ananya R., Bengaluru</span>
                             </div>
                             <div class="testimonial-slide">
                                 <div class="testimonial-rating">★★★★★</div>
-                                <p class="testimonial-quote">"Bindu's craftsmanship on the Lotus Canvas Tote is lovely. The stitching is heavy and sturdy, and the painting is so vibrant. It makes my daily commute feel artistic and warm."</p>
+                                <p class="testimonial-quote">"The Lotus Canvas Tote is beautifully made and wonderfully practical. The painting is vibrant, the stitching is sturdy, and it adds a warm artistic touch to my everyday routine."</p>
                                 <span class="testimonial-author">&mdash; Meera K., Mumbai</span>
                             </div>
                             <div class="testimonial-slide">
                                 <div class="testimonial-rating">★★★★★</div>
-                                <p class="testimonial-quote">"I got a customized floral kurta for a family function. The service was personalized—Bindu sent sketch previews beforehand. A wonderful boutique experience!"</p>
+                                <p class="testimonial-quote">"The customized floral kurta felt deeply personal and thoughtfully crafted. Bindu shared sketch previews throughout the process, making the experience feel elegant and truly special."</p>
                                 <span class="testimonial-author">&mdash; Rohan S., Delhi</span>
                             </div>
                         </div>

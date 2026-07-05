@@ -340,26 +340,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. ANIMATION & PARALLAX SYSTEMS
     // ==========================================================================
 
-    // Word-by-word stagger for Home page hero
+    // Brand hero animation reset: called when user navigates back to home
     function triggerHeroTitleStagger() {
-        const headline = document.getElementById('hero-headline');
-        if (!headline) return;
-        
-        if (headline.querySelector('span')) {
-            setTimeout(() => {
-                headline.querySelectorAll('span').forEach(span => span.classList.add('word-revealed'));
-            }, 100);
-            return;
-        }
+        // The brand hero animations are CSS-driven (animation keyframes).
+        // To replay them on re-visit, we clone and re-insert the brand wrapper.
+        const wrapper = document.getElementById('brand-reveal-wrapper');
+        if (!wrapper) return;
 
-        const words = headline.innerText.split(' ');
-        headline.innerHTML = words.map((word, idx) => {
-            return `<span style="transition-delay: ${idx * 0.15}s">${word}</span>`;
-        }).join(' ');
-
+        // Force animation restart by cloning the node
+        const parent = wrapper.parentNode;
+        const clone = wrapper.cloneNode(true);
+        wrapper.remove();
+        // Append clone back to trigger CSS animations from start
         setTimeout(() => {
-            headline.querySelectorAll('span').forEach(span => span.classList.add('word-revealed'));
-        }, 100);
+            parent.appendChild(clone);
+        }, 10);
     }
 
     // Intersection Observer scroll reveals
@@ -393,13 +388,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const scrollPos = window.pageYOffset;
         const windowWidth = window.innerWidth;
+        const viewHeight = window.innerHeight;
 
         // Skip heavy scroll calculations on mobile for performance
         if (windowWidth < 576) return;
 
+        const homeView = document.getElementById('home-view');
+        const isHomeActive = homeView && homeView.classList.contains('active');
+
         // 1. Home view hero parallax layers
-        const homeHero = document.getElementById('home-view');
-        if (homeHero && homeHero.classList.contains('active')) {
+        if (isHomeActive) {
             const bgLayer = document.getElementById('hero-bg');
             const midLayer = document.getElementById('hero-midground');
             
@@ -418,10 +416,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 3. Philosophy Section zoom & scroll parallax
         const philosophyBg = document.getElementById('philosophy-bg');
-        if (philosophyBg && homeHero && homeHero.classList.contains('active')) {
+        if (philosophyBg && isHomeActive) {
             const parent = philosophyBg.parentElement;
             const offsetTop = parent.offsetTop;
-            const viewHeight = window.innerHeight;
             
             if (scrollPos + viewHeight > offsetTop) {
                 const relScroll = (scrollPos + viewHeight - offsetTop);
@@ -434,12 +431,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newsletterBg) {
             const parent = newsletterBg.parentElement;
             const offsetTop = parent.offsetTop;
-            const viewHeight = window.innerHeight;
             
             if (scrollPos + viewHeight > offsetTop) {
                 const relScroll = (scrollPos + viewHeight - offsetTop);
                 newsletterBg.style.transform = `translate3d(0px, ${relScroll * 0.15}px, 0px)`;
             }
+        }
+
+        // 5. Section-to-section parallax depth effect (home sections only)
+        if (isHomeActive) {
+            const sectionIds = [
+                'intro-parallax-section',
+                'categories-parallax-section',
+                'featured-parallax-section',
+                'philosophy-parallax-section',
+                'testimonials-parallax-section'
+            ];
+
+            sectionIds.forEach((id) => {
+                const section = document.getElementById(id);
+                if (!section) return;
+
+                const rect = section.getBoundingClientRect();
+                const sectionCenterY = rect.top + rect.height / 2;
+                const viewCenterY = viewHeight / 2;
+
+                // How far section center is from viewport center (-1 to +1 range)
+                const distanceFromCenter = (sectionCenterY - viewCenterY) / viewHeight;
+
+                // Apply a subtle translateY based on distance — creates depth layering effect
+                const parallaxOffset = distanceFromCenter * 28;
+
+                // Only apply when section is near viewport (avoid far-away transforms)
+                if (Math.abs(distanceFromCenter) < 1.2) {
+                    section.style.transform = `translate3d(0, ${parallaxOffset}px, 0)`;
+                } else {
+                    section.style.transform = '';
+                }
+            });
         }
 
     });
