@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const products = [
         {
             id: 'kurti-amodini',
-            name: 'Peacock Feather Kurti',
-            price: 2000,
+            name: 'Amodini Cotton Kurti',
+            price: 8900,
             category: 'kurtis',
             image: 'product_kurta_floral_1.jpeg',
             tag: 'Bestseller',
@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'kurta-chandra',
-            name: 'Lotus Kurti',
-            price: 1700,
+            name: 'Chandra Khadi Kurti',
+            price: 7200,
             category: 'kurtis',
             image: 'product_kurta_floral_2.jpeg',
             tag: null,
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'kurta-anarkali',
-            name: 'Gold Poo Kurti',
-            price: 1500,
+            name: 'Pushpa Linen Anarkali Kurti',
+            price: 12400,
             category: 'kurtis',
             image: 'product_kurta_floral_3.jpeg',
             tag: 'New',
@@ -141,18 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
             featured: false,
             description: 'A statement accessory. Natural heavy cotton canvas bag decorated with a stylized hand-painted golden lotus mandala and green vine border. Complete with leather accents and secure metal zippers.',
             options: ['Strap: Leather (Standard 10" drop)']
-        },
-        {
-            id: 'frock-sunshine',
-            name: 'Sunshine Cotton Frock',
-            price: 2499,
-            category: 'frocks',
-            image: 'product_frock_1.jpeg',
-            tag: 'New',
-            date: '2026-06-05',
-            featured: true,
-            description: 'Playful organic cotton frock for kids with hand-painted sunshine and floral motifs. Soft, breathable, and finished with gentle hides for comfort.',
-            options: ['Age: 2-3 Years', 'Age: 4-5 Years', 'Age: 6-7 Years']
         },
         {
             id: 'men-kurta',
@@ -484,26 +472,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderShopProducts() {
         if (!shopProductsContainer) return;
         
-        const launchingSoonCategories = ['sarees', 'dupattas', 'totes'];
         let filtered = products;
-        if (currentFilter === 'all') {
-            filtered = products.filter(p => !launchingSoonCategories.includes(p.category));
-        } else {
+        if (currentFilter !== 'all') {
             filtered = products.filter(p => p.category === currentFilter);
-        }
-
-        // For selected categories, show a "Launching soon" placeholder instead of product listings
-        if (currentFilter !== 'all' && launchingSoonCategories.includes(currentFilter)) {
-            shopProductsContainer.classList.remove('d-none');
-            shopEmptyState.classList.add('d-none');
-            shopProductsContainer.innerHTML = `
-                <div class="shop-launching-soon reveal-fade" style="text-align:center;padding:80px 0;">
-                    <p class="empty-message" style="font-size:1.25rem;font-weight:600;">Launching soon</p>
-                    <p style="margin-top:6px;color:var(--muted,#666);">This collection will be available shortly. Stay tuned.</p>
-                </div>
-            `;
-            observeScrollReveals();
-            return;
         }
         
         if (currentSort === 'price-low') {
@@ -538,9 +509,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderFeaturedProducts() {
         if (!featuredProductsContainer) return;
-        // Exclude categories that are launching soon from the featured gallery
-        const launchingSoonCategories = ['sarees', 'dupattas', 'totes'];
-        const featured = products.filter(p => p.featured && !launchingSoonCategories.includes(p.category)).slice(0, 3);
+        
+        const featured = products.filter(p => p.featured).slice(0, 3);
         featuredProductsContainer.innerHTML = '';
         
         featured.forEach(p => {

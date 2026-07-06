@@ -3432,6 +3432,25 @@ a {
     
     /* Navigation Hamburger */
     .hamburger-menu { display: flex; }
+
+    /* Mobile header layout: hamburger (left) — logo (center) — cart (right) */
+    .header-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+    .hamburger-menu {
+        grid-column: 1;
+        justify-self: start;
+    }
+    .logo {
+        grid-column: 2;
+        justify-self: center;
+    }
+    .header-actions {
+        grid-column: 3;
+        justify-self: end;
+    }
     
     .nav-menu {
         position: fixed;
