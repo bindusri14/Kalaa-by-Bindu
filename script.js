@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'dupattas': 'Designer Hand-Painted Dupattas',
             'totes': 'Canvas Botanical Tote Bags',
             'frocks': "Kids' Cotton Frocks",
-            'kurtas': 'Hand-Painted Kurtis'
+            'kurtas': 'Hand-Painted Kurtas'
         };
 
         const categoryDescs = {
