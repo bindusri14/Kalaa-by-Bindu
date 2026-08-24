@@ -5,7 +5,7 @@ const steps = [
   {
     n: "01",
     title: "Sketch",
-    body: "Each motif is drawn freehand in charcoal directly onto the fabric — no stencils, no repeats.",
+    body: "Each motif is drawn freehand in charcoal directly onto the fabric.",
   },
   {
     n: "02",
