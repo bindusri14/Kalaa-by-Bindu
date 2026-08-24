@@ -41,10 +41,10 @@ export function Footer() {
               Contact
             </Link>
             <a
-              href="mailto:hello@kalaabybindu.com"
+              href="mailto:kalaabybindu@gmail.com"
               className="text-sm text-ivory-100/70 transition hover:text-gold-300"
             >
-              hello@kalaabybindu.com
+              kalaabybindu@gmail.com
             </a>
           </div>
         </div>

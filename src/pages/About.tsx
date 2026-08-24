@@ -26,9 +26,8 @@ export default function About() {
             <h1 className="mt-4 text-5xl leading-tight text-ivory-50 md:text-6xl">Bindu</h1>
             <Ornament className="!justify-start my-6" />
             <p className="max-w-md text-base font-light leading-relaxed text-ivory-100/70">
-              Founder and lead artist of Kalaa by Bindu. Trained in Madhubani and Kalamkari
-              painting, Bindu has spent over a decade turning plain cloth into wearable,
-              hand-painted heirlooms.
+              Founder and lead artist of Kalaa by Bindu. 
+              What began as an exploration of colors and fabrics has evolved into a signature style where every piece tells its own story through art
             </p>
           </Reveal>
           <Reveal delay={0.15}>

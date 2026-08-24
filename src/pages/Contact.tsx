@@ -70,8 +70,8 @@ export default function Contact() {
             </div>
             <div>
               <h3 className="mb-2 text-sm tracking-wide-xl uppercase text-gold-600">Email</h3>
-              <a href="mailto:hello@kalaabybindu.com" className="text-ink-900 hover:text-gold-700">
-                hello@kalaabybindu.com
+              <a href="mailto:kalaabybindu@gmail.com" className="text-ink-900 hover:text-gold-700">
+                kalaabybindu@gmail.com
               </a>
             </div>
             <div>
