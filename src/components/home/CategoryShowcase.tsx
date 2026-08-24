@@ -11,7 +11,7 @@ export function CategoryShowcase() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="The Collection"
-          title="Six Canvases, One Craft"
+          title="Multiple Canvases, One Craft"
           description="Every category begins the same way — undyed fabric and a loaded brush. What changes is the cut."
           className="mb-16"
         />

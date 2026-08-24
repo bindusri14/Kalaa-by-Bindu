@@ -41,8 +41,7 @@ export default function About() {
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 text-center">
           <Reveal>
             <p className="text-2xl font-light italic leading-relaxed text-ink-900 md:text-3xl">
-              "I don't think of fabric as something to decorate. I think of it as a surface
-              that's been waiting — the way a wall waits for a fresco."
+              "I see every piece of fabric as a blank canvas — a place where color, imagination, and a little bit of soul can come together."
             </p>
             <p className="mt-4 text-sm tracking-wide-xl uppercase text-gold-600">— Bindu, Founder</p>
           </Reveal>
@@ -54,19 +53,18 @@ export default function About() {
           <Reveal className="flex flex-col gap-4">
             <h2 className="text-3xl text-ink-900">Where it Began</h2>
             <p className="font-light leading-relaxed text-ink-500">
-              Bindu grew up watching her grandmother paint temple cloth in a small town in
-              Andhra Pradesh, mixing pigment from tamarind seed and iron filings the way it had
-              been done for generations. What started as an afternoon pastime became a formal
-              apprenticeship, and eventually, a studio of her own.
+              It all began with Bindu’s love for colors, fabrics, and the beauty of art. 
+              What started as a creative passion slowly grew into a journey of turning simple fabrics into expressive works of art. 
+              With every piece, her ideas evolved into a distinctive style that feels both traditional and contemporary. 
+              Today, Kalaa by Bindu is a celebration of that journey, bringing art to life through wearable creations.
             </p>
           </Reveal>
           <Reveal delay={0.1} className="flex flex-col gap-4">
             <h2 className="text-3xl text-ink-900">The Studio Today</h2>
             <p className="font-light leading-relaxed text-ink-500">
-              Kalaa by Bindu now works with a small team of hand-painters across India, each
-              trained in a specific regional technique — Warli, Gond, Pichwai, Kalamkari and
-              Phad among them. Every piece that leaves the studio has passed under Bindu's own
-              eye before it ships.
+              Today, Kalaa by Bindu is a one-woman studio where every part of the creative journey is managed by Bindu herself. 
+              From developing designs and choosing colors to painting, finishing, and preparing each piece, she personally oversees it all. 
+              Every creation carries her vision, care, and attention to detail from beginning to end.
             </p>
           </Reveal>
         </div>

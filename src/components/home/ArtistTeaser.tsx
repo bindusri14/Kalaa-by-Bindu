@@ -20,10 +20,8 @@ export function ArtistTeaser() {
           </h2>
           <Ornament className="!justify-start" />
           <p className="max-w-md text-base font-light leading-relaxed text-ivory-100/70">
-            Every piece begins on Bindu's worktable — sketched freehand, mixed by eye, and
-            painted without a single stencil. Kalaa by Bindu grew from a childhood spent
-            watching her grandmother paint temple cloth, into a studio that now dresses
-            people across the country in wearable, hand-painted art.
+            Every piece begins with Bindu’s vision — blending vibrant colors, intricate details, and a deep love for Indian art. 
+            What started as a personal passion has grown into Kalaa by Bindu, where each creation brings a touch of handcrafted artistry to contemporary fashion.
           </p>
           <Link
             to="/about"
