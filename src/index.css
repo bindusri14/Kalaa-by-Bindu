@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Jost", "Segoe UI", sans-serif;
+
+  --color-plum-950: #170512;
+  --color-plum-900: #260a25;
+  --color-plum-800: #33102f;
+  --color-plum-700: #451a3f;
+  --color-plum-600: #5c2854;
+  --color-plum-500: #75386c;
+
+  --color-gold-100: #faf3e0;
+  --color-gold-200: #f0e0b3;
+  --color-gold-300: #e6c988;
+  --color-gold-400: #d9b26b;
+  --color-gold-500: #c99a4d;
+  --color-gold-600: #a9793c;
+  --color-gold-700: #8a5f30;
+
+  --color-ivory-50: #fffdf9;
+  --color-ivory-100: #faf6ee;
+  --color-ivory-200: #f3ecdd;
+  --color-ivory-300: #e9dfc9;
+
+  --color-ink-900: #1c1417;
+  --color-ink-700: #3a2e33;
+  --color-ink-500: #6b5b62;
+
+  --shadow-gold: 0 8px 30px -8px rgba(169, 121, 60, 0.45);
+  --animate-drift: drift 22s ease-in-out infinite;
+  --animate-drift-slow: drift 34s ease-in-out infinite reverse;
+  --animate-shimmer: shimmer 3.2s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    50% { transform: translate3d(1.5%, -2.5%, 0) rotate(1.5deg); }
+  }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ivory-100);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  ::selection {
+    background: var(--color-gold-300);
+    color: var(--color-plum-900);
+  }
+
+  /* thin, quiet scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ivory-100);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gold-300);
+    border-radius: 999px;
+    border: 2px solid var(--color-ivory-100);
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(180deg, #f3e2b3 0%, #d9b26b 55%, #a9793c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tracking-wide-xl {
+    letter-spacing: 0.28em;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+}
