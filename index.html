@@ -23,6 +23,13 @@
 </head>
 <body>
 
+    <!-- Ambient grain texture overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- Custom cursor (desktop only, activated via JS feature detect) -->
+    <div class="custom-cursor-ring" id="custom-cursor-ring" aria-hidden="true"></div>
+    <div class="custom-cursor-dot" id="custom-cursor-dot" aria-hidden="true"></div>
+
     <!-- Header Navigation -->
     <header class="main-header" id="main-header">
         <div class="header-container">
@@ -131,6 +138,22 @@
                     </div>
                     <span class="scroll-text">Scroll to explore</span>
                 </div> -->
+            </section>
+
+            <!-- Marquee Ticker Strip -->
+            <section class="marquee-section" aria-hidden="true">
+                <div class="marquee-track">
+                    <span class="marquee-item">Hand-Painted</span>
+                    <span class="marquee-item">Made to Order</span>
+                    <span class="marquee-item">Pure Natural Fibers</span>
+                    <span class="marquee-item">One-of-a-Kind</span>
+                    <span class="marquee-item">Boutique Studio, Hyderabad</span>
+                    <span class="marquee-item">Hand-Painted</span>
+                    <span class="marquee-item">Made to Order</span>
+                    <span class="marquee-item">Pure Natural Fibers</span>
+                    <span class="marquee-item">One-of-a-Kind</span>
+                    <span class="marquee-item">Boutique Studio, Hyderabad</span>
+                </div>
             </section>
 
             <!-- Section 2: "What Is Fabric Painting" -->
@@ -931,6 +954,11 @@
 
     <!-- Notification Toast -->
     <div class="toast-container" id="toast-container"></div>
+
+    <!-- Animation Engines (CDN — no build step in this project) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
     <!-- Script file -->
     <script src="script.js"></script>

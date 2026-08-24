@@ -235,6 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetView.classList.add('fade-in');
                 // Re-evaluate scroll animations inside view
                 observeScrollReveals();
+                if (typeof initClipReveals === 'function') initClipReveals();
+                if (typeof initMagneticButtons === 'function') initMagneticButtons();
+                if (typeof refreshScrollTrigger === 'function') refreshScrollTrigger();
                 // Trigger hero title staggers if home
                 if (viewName === 'home') {
                     triggerHeroTitleStagger();
@@ -259,7 +262,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.__kalaaLenis) {
+                // Stop first so any in-flight momentum from a recent wheel/touch
+                // gesture doesn't keep animating toward its old target and undo
+                // the reset a frame later.
+                window.__kalaaLenis.stop();
+                window.__kalaaLenis.scrollTo(0, { immediate: true, force: true });
+                window.__kalaaLenis.start();
+            } else {
+                window.scrollTo({ top: 0, behavior: 'auto' });
+            }
         }
     }
 
@@ -386,94 +398,151 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Multi-layer scroll Parallax calculations
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.pageYOffset;
-        const windowWidth = window.innerWidth;
-        const viewHeight = window.innerHeight;
+    // ==========================================================================
+    // 4b. GSAP + LENIS ANIMATION ENGINE (progressive enhancement — CDN based)
+    // ==========================================================================
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const gsapAvailable = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
-        // Skip heavy scroll calculations on mobile for performance
-        if (windowWidth < 576) return;
+    if (gsapAvailable) {
+        gsap.registerPlugin(ScrollTrigger);
 
-        const homeView = document.getElementById('home-view');
-        const isHomeActive = homeView && homeView.classList.contains('active');
-
-        // 1. Home view hero parallax layers
-        if (isHomeActive) {
-            const bgLayer = document.getElementById('hero-bg');
-            const midLayer = document.getElementById('hero-midground');
-            
-            if (bgLayer) bgLayer.style.transform = `translate3d(0px, ${scrollPos * 0.4}px, 0px)`;
-            if (midLayer) midLayer.style.transform = `translate3d(0px, ${scrollPos * 0.2}px, 0px)`;
+        // Buttery smooth scroll, wired into GSAP's ticker so ScrollTrigger stays in sync
+        if (typeof Lenis !== 'undefined' && !prefersReducedMotion) {
+            const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
+            window.__kalaaLenis = lenis;
         }
 
-        // 2. About view hero background parallax
-        const aboutHeroBg = document.getElementById('about-hero-bg');
-        const aboutView = document.getElementById('about-view');
-        if (aboutHeroBg && aboutView && aboutView.classList.contains('active')) {
-            const offsetTop = aboutHeroBg.parentElement.offsetTop;
-            const relScroll = scrollPos - offsetTop;
-            aboutHeroBg.style.transform = `translate3d(0px, ${relScroll * 0.35}px, 0px)`;
-        }
-
-        // 3. Philosophy Section zoom & scroll parallax
-        const philosophyBg = document.getElementById('philosophy-bg');
-        if (philosophyBg && isHomeActive) {
-            const parent = philosophyBg.parentElement;
-            const offsetTop = parent.offsetTop;
-            
-            if (scrollPos + viewHeight > offsetTop) {
-                const relScroll = (scrollPos + viewHeight - offsetTop);
-                philosophyBg.style.transform = `translate3d(0px, ${relScroll * 0.2}px, 0px)`;
-            }
-        }
-
-        // 4. Newsletter texture background parallax
-        const newsletterBg = document.getElementById('newsletter-bg-texture');
-        if (newsletterBg) {
-            const parent = newsletterBg.parentElement;
-            const offsetTop = parent.offsetTop;
-            
-            if (scrollPos + viewHeight > offsetTop) {
-                const relScroll = (scrollPos + viewHeight - offsetTop);
-                newsletterBg.style.transform = `translate3d(0px, ${relScroll * 0.15}px, 0px)`;
-            }
-        }
-
-        // 5. Section-to-section parallax depth effect (home sections only)
-        if (isHomeActive) {
-            const sectionIds = [
-                'intro-parallax-section',
-                'categories-parallax-section',
-                'featured-parallax-section',
-                'philosophy-parallax-section',
-                'testimonials-parallax-section'
+        if (!prefersReducedMotion) {
+            // Layered background parallax — scrubbed to scroll position within each section
+            const parallaxLayers = [
+                { el: '#hero-bg', trigger: '#hero-section-wrap', yPercent: 16 },
+                { el: '#hero-midground', trigger: '#hero-section-wrap', yPercent: 9 },
+                { el: '#about-hero-bg', trigger: '.about-hero-section', yPercent: 14 },
+                { el: '#newsletter-bg-texture', trigger: '.newsletter-section', yPercent: 10 },
             ];
 
-            sectionIds.forEach((id) => {
-                const section = document.getElementById(id);
-                if (!section) return;
-
-                const rect = section.getBoundingClientRect();
-                const sectionCenterY = rect.top + rect.height / 2;
-                const viewCenterY = viewHeight / 2;
-
-                // How far section center is from viewport center (-1 to +1 range)
-                const distanceFromCenter = (sectionCenterY - viewCenterY) / viewHeight;
-
-                // Apply a subtle translateY based on distance — creates depth layering effect
-                const parallaxOffset = distanceFromCenter * 28;
-
-                // Only apply when section is near viewport (avoid far-away transforms)
-                if (Math.abs(distanceFromCenter) < 1.2) {
-                    section.style.transform = `translate3d(0, ${parallaxOffset}px, 0)`;
-                } else {
-                    section.style.transform = '';
-                }
+            parallaxLayers.forEach((layer) => {
+                const el = document.querySelector(layer.el);
+                const trigger = document.querySelector(layer.trigger);
+                if (!el || !trigger) return;
+                gsap.to(el, {
+                    yPercent: layer.yPercent,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: trigger,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true,
+                    }
+                });
             });
         }
 
-    });
+        window.__kalaaGsapReady = true;
+    }
+
+    // Re-sync ScrollTrigger measurements after view swaps / dynamic content changes
+    function refreshScrollTrigger() {
+        if (gsapAvailable) {
+            requestAnimationFrame(() => ScrollTrigger.refresh());
+        }
+    }
+
+    // Scroll-triggered clip-path image reveals (wipe-in), progressive: only runs if GSAP loaded
+    function initClipReveals() {
+        if (!gsapAvailable || prefersReducedMotion) return;
+        // Only process images that are actually visible right now — images inside an
+        // inactive (display:none) page-view are skipped and picked up on the next
+        // call once their view becomes active, avoiding zero-size trigger bounds.
+        const targets = Array.from(document.querySelectorAll('.category-img, .product-img, .bts-img, .bio-img'))
+            .filter(img => !img.dataset.clipInited && img.offsetParent !== null);
+        if (targets.length === 0) return;
+
+        targets.forEach(img => {
+            img.dataset.clipInited = '1';
+            gsap.set(img, { clipPath: 'inset(0 0 0 100%)' });
+        });
+
+        ScrollTrigger.batch(targets, {
+            start: 'top 88%',
+            once: true,
+            onEnter: (batch) => {
+                gsap.to(batch, {
+                    clipPath: 'inset(0 0 0 0%)',
+                    duration: 1.1,
+                    ease: 'power3.out',
+                    stagger: 0.08,
+                });
+            }
+        });
+
+        refreshScrollTrigger();
+    }
+
+    // Magnetic pull on primary CTAs — desktop pointer only
+    function initMagneticButtons() {
+        if (!gsapAvailable || !isDesktopPointer || prefersReducedMotion) return;
+        document.querySelectorAll('.btn-primary, .btn-secondary, .btn-accent').forEach((btn) => {
+            if (btn.dataset.magnetic) return;
+            btn.dataset.magnetic = '1';
+            const xTo = gsap.quickTo(btn, 'x', { duration: 0.5, ease: 'power3' });
+            const yTo = gsap.quickTo(btn, 'y', { duration: 0.5, ease: 'power3' });
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                xTo((e.clientX - rect.left - rect.width / 2) * 0.25);
+                yTo((e.clientY - rect.top - rect.height / 2) * 0.35);
+            });
+            btn.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
+        });
+    }
+
+    // Refined custom cursor — dot + lagging ring, desktop pointer only, pure rAF (no GSAP dependency)
+    function initCustomCursor() {
+        if (!isDesktopPointer) return;
+        const dot = document.getElementById('custom-cursor-dot');
+        const ring = document.getElementById('custom-cursor-ring');
+        if (!dot || !ring) return;
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        let cursorStarted = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            if (!cursorStarted) {
+                cursorStarted = true;
+                document.body.classList.add('cursor-ready');
+            }
+        });
+
+        (function ringLoop() {
+            ringX += (mouseX - ringX) * 0.16;
+            ringY += (mouseY - ringY) * 0.16;
+            ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(ringLoop);
+        })();
+
+        const hoverSelector = 'a, button, .filter-btn, .product-img, .category-img, input, select, textarea';
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest(hoverSelector)) document.body.classList.add('cursor-hover');
+        });
+        document.body.addEventListener('mouseout', (e) => {
+            if (e.target.closest(hoverSelector)) document.body.classList.remove('cursor-hover');
+        });
+    }
+
+    initCustomCursor();
+    initClipReveals();
+    initMagneticButtons();
 
 
 
@@ -535,6 +604,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         observeScrollReveals();
+        if (typeof initClipReveals === 'function') initClipReveals();
+        if (typeof initMagneticButtons === 'function') initMagneticButtons();
     }
 
     function renderFeaturedProducts() {
@@ -548,8 +619,10 @@ document.addEventListener('DOMContentLoaded', () => {
         featured.forEach(p => {
             featuredProductsContainer.appendChild(createProductCard(p));
         });
-        
+
         observeScrollReveals();
+        if (typeof initClipReveals === 'function') initClipReveals();
+        if (typeof initMagneticButtons === 'function') initMagneticButtons();
     }
 
     function createProductCard(product) {

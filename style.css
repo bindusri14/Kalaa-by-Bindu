@@ -1,51 +1,54 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Kalaa by Bindu - Premium Artisanal E-Commerce Stylesheet
    ========================================================================== */
 
 /* --- Design Tokens & Variables --- */
-/* Luxury refresh: ivory canvas, near-black charcoal, antique gold accent.
-   Variable names kept stable for compatibility with the rest of the sheet;
-   only the values have been re-cast into the new palette. */
+/* Quiet luxury palette: ivory / sand / ink neutrals carrying a single clay
+   accent — deliberately not the black+gold cliché. Variable names kept
+   stable for compatibility with the rest of the sheet; only values changed.
+   --mustard is a lighter tint of the SAME clay hue (for use on dark
+   surfaces), not a second competing color. --emerald is a neutral warm
+   stone, used only as a quiet secondary neutral. */
 :root {
-    /* Color Palette */
-    --ivory: #FBF9F6;          /* Soft ivory canvas background */
-    --warm-cream: #F1ECE3;     /* Deeper warm panel background */
-    --terracotta: #B8925A;     /* Antique gold — primary accent */
-    --terracotta-dark: #96743F;/* Deep gold for hover states */
-    --indigo: #171614;         /* Near-black charcoal — primary ink/dark surface */
-    --indigo-light: #2A2926;   /* Lifted charcoal for secondary dark surfaces */
-    --mustard: #C9A227;        /* Brighter gold, used sparingly for highlights */
-    --emerald: #6B6558;        /* Muted taupe-olive, tertiary accent */
-    --emerald-dark: #524E44;   /* Deeper taupe-olive hover */
+    /* Color Palette — one accent, three neutrals */
+    --ivory: #FAF7F1;          /* Soft ivory canvas background */
+    --warm-cream: #EFE7D8;     /* Warm sand panel background */
+    --terracotta: #A15C3C;     /* Clay — the single accent color */
+    --terracotta-dark: #7C4429;/* Deep clay for hover states */
+    --indigo: #171511;         /* Near-black ink — primary dark surface */
+    --indigo-light: #292520;   /* Lifted ink for secondary dark surfaces */
+    --mustard: #C69368;        /* Light clay tint — accents on dark surfaces only */
+    --emerald: #6B6459;        /* Neutral warm stone — quiet secondary neutral */
+    --emerald-dark: #4F4A41;   /* Deeper stone hover */
 
     /* Text & UI Colors */
-    --text-main: #1F1E1C;      /* Near-black for body copy */
-    --text-muted: #8A8378;     /* Warm grey for secondary text */
-    --border-color: #E5DFD3;   /* Hairline warm border */
+    --text-main: #201D19;      /* Near-black for body copy */
+    --text-muted: #8A8175;     /* Warm grey for secondary text */
+    --border-color: #E3DACB;   /* Hairline warm border */
     --white: #FFFFFF;
 
     /* Glassmorphism */
-    --glass-bg: rgba(251, 249, 246, 0.78);
+    --glass-bg: rgba(250, 247, 241, 0.78);
     --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: rgba(31, 30, 28, 0.07);
+    --glass-shadow: rgba(23, 21, 17, 0.07);
 
     /* Fonts */
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Outfit', sans-serif;
-    
+
     /* Spacers & Transitions */
     --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-snappy: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --container-width: 1320px;
 
     /* Showcase Colorway Custom variables (Dynamic) */
-    --showcase-bg-color: #FBF9F6;
+    --showcase-bg-color: #FAF7F1;
     --showcase-branch-color: #6B5A45;
-    --showcase-leaf-color: #6B6558;
+    --showcase-leaf-color: #6B6459;
     --showcase-petal-color-back: #C9AFA0;
     --showcase-petal-color-mid: #D9C39E;
-    --showcase-petal-color-front: #B8925A;
-    --showcase-gold: #C9A227;
+    --showcase-petal-color-front: #A15C3C;
+    --showcase-gold: #C69368;
 }
 
 /* --- Reset & Base Styles --- */
@@ -56,7 +59,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* Lenis owns smoothing in JS — CSS smooth-scroll fights it */
     -webkit-text-size-adjust: 100%;
 }
 
@@ -81,9 +84,9 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(184, 146, 90, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 90% 80%, rgba(107, 101, 88, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 50% at 50% 110%, rgba(201, 162, 39, 0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(161, 92, 60, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 80%, rgba(107, 100, 89, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 110%, rgba(198, 147, 104, 0.04) 0%, transparent 60%);
     animation: bg-aurora-drift 18s ease-in-out infinite alternate;
     pointer-events: none;
     z-index: 0;
@@ -92,27 +95,27 @@ body::before {
 @keyframes bg-aurora-drift {
     0% {
         background:
-            radial-gradient(ellipse 80% 60% at 10% 20%, rgba(184, 146, 90, 0.04) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 80% at 90% 80%, rgba(107, 101, 88, 0.04) 0%, transparent 60%),
-            radial-gradient(ellipse 70% 50% at 50% 110%, rgba(201, 162, 39, 0.04) 0%, transparent 60%);
+            radial-gradient(ellipse 80% 60% at 10% 20%, rgba(161, 92, 60, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 90% 80%, rgba(107, 100, 89, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 50% 110%, rgba(198, 147, 104, 0.04) 0%, transparent 60%);
     }
     33% {
         background:
-            radial-gradient(ellipse 80% 60% at 30% 60%, rgba(184, 146, 90, 0.05) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 80% at 70% 20%, rgba(107, 101, 88, 0.04) 0%, transparent 60%),
-            radial-gradient(ellipse 70% 50% at 20% 80%, rgba(201, 162, 39, 0.04) 0%, transparent 60%);
+            radial-gradient(ellipse 80% 60% at 30% 60%, rgba(161, 92, 60, 0.05) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 70% 20%, rgba(107, 100, 89, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 20% 80%, rgba(198, 147, 104, 0.04) 0%, transparent 60%);
     }
     66% {
         background:
             radial-gradient(ellipse 80% 60% at 80% 40%, rgba(23, 22, 20, 0.03) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 80% at 20% 90%, rgba(184, 146, 90, 0.05) 0%, transparent 60%),
-            radial-gradient(ellipse 70% 50% at 70% 30%, rgba(201, 162, 39, 0.04) 0%, transparent 60%);
+            radial-gradient(ellipse 60% 80% at 20% 90%, rgba(161, 92, 60, 0.05) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 70% 30%, rgba(198, 147, 104, 0.04) 0%, transparent 60%);
     }
     100% {
         background:
-            radial-gradient(ellipse 80% 60% at 60% 80%, rgba(107, 101, 88, 0.04) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 80% at 30% 10%, rgba(201, 162, 39, 0.05) 0%, transparent 60%),
-            radial-gradient(ellipse 70% 50% at 90% 60%, rgba(184, 146, 90, 0.04) 0%, transparent 60%);
+            radial-gradient(ellipse 80% 60% at 60% 80%, rgba(107, 100, 89, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 30% 10%, rgba(198, 147, 104, 0.05) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 90% 60%, rgba(161, 92, 60, 0.04) 0%, transparent 60%);
     }
 }
 
@@ -142,7 +145,7 @@ body::before {
 }
 
 .section-padding {
-    padding: 100px 0;
+    padding: 130px 0;
 }
 
 .bg-warm {
@@ -301,16 +304,18 @@ a {
 }
 
 .btn-accent {
-    background-color: var(--mustard);
+    background-color: var(--ivory);
     color: var(--indigo);
     font-weight: 700;
+    border-color: var(--ivory);
 }
 
 .btn-accent:hover {
-    background-color: var(--white);
-    color: var(--indigo);
+    background-color: var(--terracotta);
+    color: var(--white);
+    border-color: var(--terracotta);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(201, 162, 39, 0.25);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
 
 .btn-text {
@@ -885,7 +890,7 @@ a {
 .ink-orb-1 {
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(184, 146, 90, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(161, 92, 60, 0.12) 0%, transparent 70%);
     top: 10%;
     right: 15%;
     animation: orb-float-in 3s ease-out 0.5s forwards, orb-drift-1 22s ease-in-out 3.5s infinite alternate;
@@ -894,7 +899,7 @@ a {
 .ink-orb-2 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(198, 147, 104, 0.08) 0%, transparent 70%);
     bottom: 15%;
     right: 5%;
     animation: orb-float-in 3s ease-out 1.0s forwards, orb-drift-2 28s ease-in-out 4s infinite alternate;
@@ -903,7 +908,7 @@ a {
 .ink-orb-3 {
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(107, 101, 88, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(107, 100, 89, 0.08) 0%, transparent 70%);
     top: 40%;
     right: 30%;
     animation: orb-float-in 3s ease-out 1.5s forwards, orb-drift-3 20s ease-in-out 4.5s infinite alternate;
@@ -1041,7 +1046,7 @@ a {
 .intro-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 40px rgba(31, 30, 28, 0.1);
-    border-color: rgba(184, 146, 90, 0.25);
+    border-color: rgba(161, 92, 60, 0.25);
 }
 
 .intro-card-icon {
@@ -1139,7 +1144,7 @@ a {
 
 .timeline-card:hover {
     box-shadow: 0 16px 36px rgba(31, 30, 28, 0.1);
-    border-color: rgba(184, 146, 90, 0.2);
+    border-color: rgba(161, 92, 60, 0.2);
 }
 
 .timeline-card-header {
@@ -1345,7 +1350,7 @@ a {
 .category-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 16px 36px rgba(31, 30, 28, 0.1);
-    border-color: rgba(184, 146, 90, 0.3);
+    border-color: rgba(161, 92, 60, 0.3);
 }
 
 .category-img-container {
@@ -1688,26 +1693,30 @@ a {
 
 .filter-btn {
     background: transparent;
-    border: 1px solid var(--border-color);
-    padding: 8px 20px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 8px 2px;
+    margin-right: 22px;
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 0;
     transition: var(--transition-snappy);
     color: var(--text-muted);
 }
 
-.filter-btn:hover, .filter-btn.active {
-    border-color: var(--indigo);
+.filter-btn:hover {
     color: var(--indigo);
-    background-color: var(--warm-cream);
+    border-bottom-color: var(--border-color);
 }
 
 .filter-btn.active {
-    background-color: var(--indigo);
-    color: var(--white);
+    background-color: transparent;
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
 }
 
 .sort-controls {
@@ -1762,7 +1771,7 @@ a {
 .product-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 16px 36px rgba(31, 30, 28, 0.1);
-    border-color: rgba(184, 146, 90, 0.3); /* Terracotta tint */
+    border-color: rgba(161, 92, 60, 0.3); /* Terracotta tint */
 }
 
 .product-img-wrapper {
@@ -1944,7 +1953,7 @@ a {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(184, 146, 90, 0.2);
+    box-shadow: 0 4px 10px rgba(161, 92, 60, 0.2);
 }
 
 .step-text h4 {
@@ -3381,22 +3390,152 @@ a {
 /* --- Scroll Reveal Animations --- */
 .reveal-fade {
     opacity: 0;
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: blur(4px);
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-fade.in-view {
     opacity: 1;
+    filter: blur(0);
 }
 
 .reveal-slide-up {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(52px) scale(0.98);
+    transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-slide-up.in-view {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   9. GRAIN TEXTURE OVERLAY — tactile, ultra-subtle
+   ========================================================================== */
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   10. MARQUEE TICKER — looping brand strip
+   ========================================================================== */
+.marquee-section {
+    background-color: var(--indigo);
+    overflow: hidden;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 38s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.82);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 0 28px;
+}
+
+.marquee-item::after {
+    content: '✦';
+    font-style: normal;
+    font-size: 0.7rem;
+    color: var(--mustard);
+    margin-left: 28px;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   11. CUSTOM CURSOR — desktop only, refined dot + trailing ring
+   ========================================================================== */
+.custom-cursor-dot,
+.custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+.custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--terracotta);
+    opacity: 0;
+    transition: opacity 0.3s ease, width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(161, 92, 60, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease, width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+body.cursor-ready .custom-cursor-dot,
+body.cursor-ready .custom-cursor-ring {
+    opacity: 1;
+}
+
+body.cursor-hover .custom-cursor-ring {
+    width: 56px;
+    height: 56px;
+    border-color: rgba(161, 92, 60, 0.85);
+}
+
+body.cursor-hover .custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+}
+
+/* Hide native cursor only on fine-pointer desktop once ready */
+@media (hover: hover) and (pointer: fine) {
+    body.cursor-ready, body.cursor-ready a, body.cursor-ready button {
+        cursor: none;
+    }
+}
+
+/* ==========================================================================
+   12. GSAP SCROLL REVEAL HELPERS
+   ========================================================================== */
+.gsap-clip-img {
+    overflow: hidden;
+}
+
+.gsap-clip-img img {
+    will-change: transform, clip-path;
 }
 
 /* ==========================================================================
@@ -3629,9 +3768,10 @@ a {
         align-items: stretch;
         gap: 16px;
     }
-    .filter-controls { gap: 8px; }
-    .filter-btn { padding: 6px 14px; font-size: 0.78rem; }
+    .filter-controls { gap: 0; }
+    .filter-btn { padding: 6px 0; margin-right: 14px; font-size: 0.7rem; }
     .sort-controls { justify-content: space-between; }
+    .marquee-item { font-size: 1rem; padding: 0 18px; }
     .sort-select { flex: 1; }
 
     .shop-title, .customize-title, .contact-title { font-size: 1.9rem; }
