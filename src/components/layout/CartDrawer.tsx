@@ -2,11 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
-import { formatINR } from "../../lib/format";
 import { ProductMedia } from "../ui/ProductMedia";
 
 export function CartDrawer() {
-  const { isOpen, closeCart, lines, updateQty, removeItem, subtotal } = useCart();
+  const { isOpen, closeCart, lines, updateQty, removeItem } = useCart();
   const [checkingOut, setCheckingOut] = useState(false);
 
   return (
@@ -74,27 +73,22 @@ export function CartDrawer() {
                             </button>
                           </div>
                           <p className="text-xs text-ink-500">Size {line.size}</p>
-                          <div className="mt-1 flex items-center justify-between">
-                            <div className="flex items-center border border-ink-900/15">
-                              <button
-                                type="button"
-                                className="h-7 w-7 text-ink-700 transition hover:bg-ivory-200"
-                                onClick={() => updateQty(line.product.id, line.size, line.qty - 1)}
-                              >
-                                −
-                              </button>
-                              <span className="w-8 text-center text-sm">{line.qty}</span>
-                              <button
-                                type="button"
-                                className="h-7 w-7 text-ink-700 transition hover:bg-ivory-200"
-                                onClick={() => updateQty(line.product.id, line.size, line.qty + 1)}
-                              >
-                                +
-                              </button>
-                            </div>
-                            <span className="text-sm text-ink-900">
-                              {formatINR(line.product.price * line.qty)}
-                            </span>
+                          <div className="mt-1 flex items-center border border-ink-900/15">
+                            <button
+                              type="button"
+                              className="h-7 w-7 text-ink-700 transition hover:bg-ivory-200"
+                              onClick={() => updateQty(line.product.id, line.size, line.qty - 1)}
+                            >
+                              −
+                            </button>
+                            <span className="w-8 text-center text-sm">{line.qty}</span>
+                            <button
+                              type="button"
+                              className="h-7 w-7 text-ink-700 transition hover:bg-ivory-200"
+                              onClick={() => updateQty(line.product.id, line.size, line.qty + 1)}
+                            >
+                              +
+                            </button>
                           </div>
                         </div>
                       </li>
@@ -103,12 +97,9 @@ export function CartDrawer() {
                 </div>
 
                 <div className="border-t border-ink-900/10 px-6 py-5">
-                  <div className="mb-4 flex items-center justify-between text-sm">
-                    <span className="text-ink-500">Subtotal</span>
-                    <span className="text-lg text-ink-900">{formatINR(subtotal)}</span>
-                  </div>
                   <p className="mb-4 text-xs leading-relaxed text-ink-500">
-                    Taxes and shipping calculated at checkout. Each piece is made and packed to order.
+                    Each piece is made to order — our atelier will follow up to confirm pricing,
+                    sizing, and timelines before your order is finalised.
                   </p>
                   {checkingOut ? (
                     <div className="border border-gold-500/40 bg-gold-100/60 px-4 py-3 text-center text-sm text-gold-700">

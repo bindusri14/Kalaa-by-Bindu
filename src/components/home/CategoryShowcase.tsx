@@ -45,9 +45,6 @@ export function CategoryShowcase() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-plum-950/80 via-plum-950/10 to-transparent" />
                     <div className="absolute inset-0 flex flex-col items-center justify-end gap-1 pb-6 text-center">
-                      <span className="text-xs tracking-wide-xl uppercase text-gold-300">
-                        {cat.devanagari}
-                      </span>
                       <h3 className="text-2xl text-ivory-50">{cat.name}</h3>
                       <span className="mt-1 text-xs uppercase tracking-wide-xl text-ivory-100/60 opacity-0 transition group-hover:opacity-100">
                         {sample ? cat.tagline : "Coming Soon"}

@@ -7,7 +7,6 @@ import { ProductMedia } from "../components/ui/ProductMedia";
 import { ProductCard } from "../components/shop/ProductCard";
 import { Reveal } from "../components/ui/Reveal";
 import { Ornament } from "../components/ui/Ornament";
-import { formatINR } from "../lib/format";
 import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
@@ -94,10 +93,9 @@ export default function ProductDetail() {
           <Reveal delay={0.1} className="flex flex-col gap-6">
             <div>
               <span className="text-xs tracking-wide-xl uppercase text-gold-600">
-                {product.technique} · {category?.devanagari}
+                {product.technique} · {category?.name}
               </span>
               <h1 className="mt-3 text-4xl text-ink-900 md:text-5xl">{product.name}</h1>
-              <p className="mt-4 text-2xl text-ink-900">{formatINR(product.price)}</p>
             </div>
 
             <Ornament className="!justify-start" />

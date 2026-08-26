@@ -5,13 +5,6 @@ import { Reveal } from "../components/ui/Reveal";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { products } from "../data/products";
 
-const milestones = [
-  { year: "2011", text: "Bindu paints her first commissioned dupatta for a family wedding." },
-  { year: "2015", text: "Formal training in Kalamkari and Pichwai under two Mithila-region artists." },
-  { year: "2019", text: "Kalaa by Bindu founded as a small studio of three hand-painters." },
-  { year: "2026", text: "Now a full atelier, still painting every commission by hand — no exceptions." },
-];
-
 export default function About() {
   return (
     <div className="bg-ivory-100">
@@ -66,22 +59,6 @@ export default function About() {
               Every creation carries her vision, care, and attention to detail from beginning to end.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="px-6 py-24 md:px-10">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Milestones" title="A Decade at the Easel" className="mb-16" />
-          <div className="mx-auto flex max-w-3xl flex-col gap-10">
-            {milestones.map((m, i) => (
-              <Reveal key={m.year} delay={i * 0.08}>
-                <div className="flex items-start gap-6 border-b border-ink-900/10 pb-8">
-                  <span className="w-16 shrink-0 font-display text-2xl text-gold-600">{m.year}</span>
-                  <p className="font-light leading-relaxed text-ink-700">{m.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

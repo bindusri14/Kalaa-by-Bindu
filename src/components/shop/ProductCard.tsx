@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import type { Product } from "../../data/types";
 import { ProductMedia } from "../ui/ProductMedia";
-import { formatINR } from "../../lib/format";
 
 export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   return (
@@ -28,7 +27,6 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             {product.name}
           </h3>
           <p className="text-xs text-ink-500">{product.fabric}</p>
-          <p className="mt-0.5 text-sm text-ink-900">{formatINR(product.price)}</p>
         </div>
       </Link>
     </motion.div>

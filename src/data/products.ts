@@ -6,9 +6,11 @@ import kurtaLotusTrail from "../assets/products/kurta-lotus-trail.jpeg";
 import kurtaGoldenBloom from "../assets/products/kurta-golden-bloom.jpeg";
 import kurtaWildflower from "../assets/products/kurta-wildflower.jpg";
 import kurtaMenPeacockFeather from "../assets/products/kurta-men-peacock-feather.jpeg";
-import sareeLotusPond from "../assets/products/saree-lotus-pond.jpg";
-import sareePeacockFeather from "../assets/products/saree-peacock-feather.jpg";
 import toteLotusBloom from "../assets/products/tote-lotus-bloom.jpg";
+import tshirtF1Race from "../assets/products/tshirt-f1-race.png";
+import totePandaBamboo from "../assets/products/tote-panda-bamboo.jpeg";
+import totePortraitBloom from "../assets/products/tote-portrait-bloom.jpeg";
+import toteFloralPop from "../assets/products/tote-floral-pop.png";
 
 const palettes: Omit<SwatchTheme, "variant">[] = [
   { base: "#c76b4a", motif: "#f4e3c9", accent: "#7a3623" }, // terracotta
@@ -32,13 +34,13 @@ function swatchAt(index: number): SwatchTheme {
 const sizesApparel = ["S", "M", "L", "XL", "XXL"];
 const sizesFrock = ["1-2Y", "2-3Y", "3-4Y", "4-5Y", "5-6Y"];
 const sizesOneSize = ["One Size"];
-const sizesSaree = ["Free Size"];
 
 export const products: Product[] = [
   {
     id: "frock-krishna-lotus",
     name: "Little Krishna Frock",
     category: "frocks",
+    section: "custom",
     technique: "Pichwai",
     fabric: "Pure Cotton",
     price: 2400,
@@ -53,6 +55,7 @@ export const products: Product[] = [
     id: "kurta-peacock-blossom",
     name: "Peacock Blossom Kurta",
     category: "kurtas",
+    section: "custom",
     technique: "Kalamkari",
     fabric: "Pure Cotton",
     price: 4800,
@@ -67,6 +70,7 @@ export const products: Product[] = [
     id: "kurta-lotus-trail",
     name: "Lotus Trail Kurta",
     category: "kurtas",
+    section: "custom",
     technique: "Pichwai",
     fabric: "Cotton",
     price: 4200,
@@ -80,6 +84,7 @@ export const products: Product[] = [
     id: "kurta-golden-bloom",
     name: "Golden Bloom Kurta",
     category: "kurtas",
+    section: "custom",
     technique: "Mughal Floral",
     fabric: "Cotton",
     price: 4600,
@@ -93,6 +98,7 @@ export const products: Product[] = [
     id: "kurta-wildflower",
     name: "Wildflower Kurta",
     category: "kurtas",
+    section: "custom",
     technique: "Botanical",
     fabric: "Cotton",
     price: 4400,
@@ -106,6 +112,7 @@ export const products: Product[] = [
     id: "kurta-men-peacock-feather",
     name: "Peacock Feather Kurta",
     category: "kurtas-men",
+    section: "custom",
     technique: "Pichwai",
     fabric: "Linen Cotton",
     price: 3800,
@@ -117,37 +124,10 @@ export const products: Product[] = [
     featured: true,
   },
   {
-    id: "saree-lotus-pond",
-    name: "Lotus Pond Saree",
-    category: "sarees",
-    technique: "Pichwai",
-    fabric: "Silk Chiffon",
-    price: 21500,
-    sizes: sizesSaree,
-    description:
-      "An ivory saree hand-painted with a sprawling lotus pond across the pallu and border — soft pinks and greens on a fluid silk chiffon drape.",
-    images: [sareeLotusPond],
-    swatch: swatchAt(6),
-    featured: true,
-  },
-  {
-    id: "saree-peacock-feather",
-    name: "Peacock Feather Saree",
-    category: "sarees",
-    technique: "Kalamkari",
-    fabric: "Pure Silk",
-    price: 26500,
-    sizes: sizesSaree,
-    description:
-      "A midnight-blue silk saree with a hand-painted peacock and feather border in emerald and gold — our most detailed bridal piece, days in the making.",
-    images: [sareePeacockFeather],
-    swatch: swatchAt(1),
-    featured: true,
-  },
-  {
     id: "tote-lotus-bloom",
     name: "Lotus Bloom Tote",
     category: "tote-bags",
+    section: "custom",
     technique: "Botanical",
     fabric: "Canvas, Leather Handles",
     price: 2200,
@@ -157,6 +137,62 @@ export const products: Product[] = [
     images: [toteLotusBloom],
     swatch: swatchAt(0),
     featured: true,
+  },
+  {
+    id: "tshirt-f1-race",
+    name: "Formula 1 Graphic Tee",
+    category: "t-shirts",
+    section: "custom",
+    technique: "Custom Print",
+    fabric: "Cotton Jersey",
+    price: 1800,
+    sizes: sizesApparel,
+    description:
+      "A black cotton tee with a bold Formula 1 race-car graphic down the front — a custom-printed piece made to order alongside our hand-painted line.",
+    images: [tshirtF1Race],
+    swatch: swatchAt(5),
+  },
+  {
+    id: "tote-panda-bamboo",
+    name: "Panda & Bamboo Tote",
+    category: "tote-bags",
+    section: "launched",
+    technique: "Hand-Painted",
+    fabric: "Canvas",
+    price: 0,
+    sizes: sizesOneSize,
+    description:
+      "A natural canvas tote hand-painted with a panda cub nestled in bamboo, finished with hand-painted green straps.",
+    images: [totePandaBamboo],
+    swatch: swatchAt(3),
+  },
+  {
+    id: "tote-portrait-bloom",
+    name: "Muse in Bloom Tote",
+    category: "tote-bags",
+    section: "launched",
+    technique: "Hand-Painted",
+    fabric: "Canvas",
+    price: 0,
+    sizes: sizesOneSize,
+    description:
+      "A natural canvas tote hand-painted with a woman in profile among elephant-ear leaves, set against a bold sunset-orange disc.",
+    images: [totePortraitBloom],
+    swatch: swatchAt(6),
+  },
+  {
+    id: "tote-floral-pop",
+    name: "Pop Floral Tote",
+    category: "tote-bags",
+    section: "launched",
+    technique: "Hand-Painted",
+    fabric: "Canvas",
+    price: 0,
+    sizes: sizesOneSize,
+    description:
+      "A natural canvas tote hand-painted with line-drawn blooms over blocks of blue, yellow and orange, finished with black handles.",
+    images: [toteFloralPop],
+    swatch: swatchAt(1),
   },
 ];
 

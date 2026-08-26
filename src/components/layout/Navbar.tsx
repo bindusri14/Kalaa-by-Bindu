@@ -97,10 +97,9 @@ export function Navbar() {
                       <Link
                         key={c.slug}
                         to={`/shop/${c.slug}`}
-                        className="flex items-baseline justify-between rounded-sm px-3 py-2 text-sm text-ivory-100/90 transition hover:bg-plum-800 hover:text-gold-300"
+                        className="block rounded-sm px-3 py-2 text-sm text-ivory-100/90 transition hover:bg-plum-800 hover:text-gold-300"
                       >
-                        <span>{c.name}</span>
-                        <span className="text-xs text-ivory-100/40">{c.devanagari}</span>
+                        {c.name}
                       </Link>
                     ))}
                   </div>

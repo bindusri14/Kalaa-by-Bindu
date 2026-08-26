@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Ornament } from "../ui/Ornament";
-import { DupattaFlyover } from "./DupattaFlyover";
 
 const container: Variants = {
   hidden: {},
@@ -61,8 +60,6 @@ export function Hero() {
         </svg>
       </motion.div>
 
-      <DupattaFlyover />
-
       {/* content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
@@ -98,7 +95,7 @@ export function Hero() {
             variants={item}
             className="max-w-md text-base font-light leading-relaxed text-ivory-100/70"
           >
-            Kurtas, sarees, frocks and more — each one a canvas, brushed by an artist's hand
+            Kurtas, frocks, tote bags and more — each one a canvas, brushed by an artist's hand
             before it ever becomes yours.
           </motion.p>
 

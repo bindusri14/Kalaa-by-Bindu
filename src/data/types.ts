@@ -2,14 +2,12 @@ export type CategorySlug =
   | "frocks"
   | "kurtas"
   | "kurtas-men"
-  | "sarees"
-  | "dupattas"
-  | "tote-bags";
+  | "tote-bags"
+  | "t-shirts";
 
 export interface Category {
   slug: CategorySlug;
   name: string;
-  devanagari: string;
   tagline: string;
   description: string;
 }
@@ -23,10 +21,13 @@ export interface SwatchTheme {
   accent: string;
 }
 
+export type ProductSection = "custom" | "launched";
+
 export interface Product {
   id: string;
   name: string;
   category: CategorySlug;
+  section: ProductSection;
   technique: string;
   fabric: string;
   price: number;
