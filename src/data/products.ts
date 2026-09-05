@@ -4,9 +4,7 @@ import frockKrishnaLotus from "../assets/products/frock-krishna-lotus.jpeg";
 import kurtaPeacockBlossom from "../assets/products/kurta-peacock-blossom.jpeg";
 import kurtaLotusTrail from "../assets/products/kurta-lotus-trail.jpeg";
 import kurtaGoldenBloom from "../assets/products/kurta-golden-bloom.jpeg";
-import kurtaWildflower from "../assets/products/kurta-wildflower.jpg";
 import kurtaMenPeacockFeather from "../assets/products/kurta-men-peacock-feather.jpeg";
-import toteLotusBloom from "../assets/products/tote-lotus-bloom.jpg";
 import tshirtF1Race from "../assets/products/tshirt-f1-race.png";
 import totePandaBamboo from "../assets/products/tote-panda-bamboo.jpeg";
 import totePortraitBloom from "../assets/products/tote-portrait-bloom.jpeg";
@@ -43,7 +41,7 @@ export const products: Product[] = [
     section: "custom",
     technique: "Pichwai",
     fabric: "Pure Cotton",
-    price: 2400,
+    price: 1399,
     sizes: sizesFrock,
     description:
       "A sunshine-yellow cotton frock for the smallest member of the family, hand-painted with a Pichwai-style baby Krishna holding a lotus. Ruffled straps and hem, tied at the back for an easy fit.",
@@ -58,7 +56,7 @@ export const products: Product[] = [
     section: "custom",
     technique: "Kalamkari",
     fabric: "Pure Cotton",
-    price: 4800,
+    price: 1499,
     sizes: sizesApparel,
     description:
       "An olive kurta with a hand-painted peacock in full plume, trailing into a branch of pink blossoms down the hem. Mandarin collar, three-quarter sleeves.",
@@ -73,7 +71,7 @@ export const products: Product[] = [
     section: "custom",
     technique: "Pichwai",
     fabric: "Cotton",
-    price: 4200,
+    price: 949,
     sizes: sizesApparel,
     description:
       "A soft grey kurta with hand-painted lotus blooms trailing across the hem and cuffs — a quiet, everyday piece with one considered detail.",
@@ -87,26 +85,12 @@ export const products: Product[] = [
     section: "custom",
     technique: "Mughal Floral",
     fabric: "Cotton",
-    price: 4600,
+    price: 1199,
     sizes: sizesApparel,
     description:
       "A deep maroon kurta with a hand-painted golden floral spray at the yoke, trailing down one side in the Mughal miniature tradition.",
     images: [kurtaGoldenBloom],
     swatch: swatchAt(7),
-  },
-  {
-    id: "kurta-wildflower",
-    name: "Wildflower Kurta",
-    category: "kurtas",
-    section: "custom",
-    technique: "Botanical",
-    fabric: "Cotton",
-    price: 4400,
-    sizes: sizesApparel,
-    description:
-      "A rust kurta with hand-painted wildflowers gathered at the neckline and trailing down the front in warm gold — understated enough for daily wear.",
-    images: [kurtaWildflower],
-    swatch: swatchAt(4),
   },
   {
     id: "kurta-men-peacock-feather",
@@ -115,27 +99,12 @@ export const products: Product[] = [
     section: "custom",
     technique: "Pichwai",
     fabric: "Linen Cotton",
-    price: 3800,
+    price: 1199,
     sizes: sizesApparel,
     description:
       "A crisp white kurta for men with a single hand-painted peacock feather and flute at the chest, inspired by Krishna's iconography and kept graphic and modern.",
     images: [kurtaMenPeacockFeather],
     swatch: swatchAt(1),
-    featured: true,
-  },
-  {
-    id: "tote-lotus-bloom",
-    name: "Lotus Bloom Tote",
-    category: "tote-bags",
-    section: "custom",
-    technique: "Botanical",
-    fabric: "Canvas, Leather Handles",
-    price: 2200,
-    sizes: sizesOneSize,
-    description:
-      "A natural canvas tote hand-painted with a single lotus in watercolour pinks and gold flecks, finished with leather handles and a riveted tag.",
-    images: [toteLotusBloom],
-    swatch: swatchAt(0),
     featured: true,
   },
   {
@@ -145,7 +114,7 @@ export const products: Product[] = [
     section: "custom",
     technique: "Custom Print",
     fabric: "Cotton Jersey",
-    price: 1800,
+    price: 1199,
     sizes: sizesApparel,
     description:
       "A black cotton tee with a bold Formula 1 race-car graphic down the front — a custom-printed piece made to order alongside our hand-painted line.",
@@ -159,7 +128,7 @@ export const products: Product[] = [
     section: "launched",
     technique: "Hand-Painted",
     fabric: "Canvas",
-    price: 0,
+    price: 499,
     sizes: sizesOneSize,
     description:
       "A natural canvas tote hand-painted with a panda cub nestled in bamboo, finished with hand-painted green straps.",
@@ -168,12 +137,12 @@ export const products: Product[] = [
   },
   {
     id: "tote-portrait-bloom",
-    name: "Muse in Bloom Tote",
+    name: "Sundari Tote",
     category: "tote-bags",
     section: "launched",
     technique: "Hand-Painted",
-    fabric: "Canvas",
-    price: 0,
+    fabric: "Cotton",
+    price: 699,
     sizes: sizesOneSize,
     description:
       "A natural canvas tote hand-painted with a woman in profile among elephant-ear leaves, set against a bold sunset-orange disc.",
@@ -181,13 +150,13 @@ export const products: Product[] = [
     swatch: swatchAt(6),
   },
   {
-    id: "tote-floral-pop",
+    id: "Abstract Boho Tote",
     name: "Pop Floral Tote",
     category: "tote-bags",
     section: "launched",
     technique: "Hand-Painted",
-    fabric: "Canvas",
-    price: 0,
+    fabric: "Cotton",
+    price: 649,
     sizes: sizesOneSize,
     description:
       "A natural canvas tote hand-painted with line-drawn blooms over blocks of blue, yellow and orange, finished with black handles.",

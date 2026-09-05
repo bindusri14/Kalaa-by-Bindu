@@ -83,6 +83,15 @@ export default function Contact() {
                 Mention "Commission" in your subject line to begin the conversation.
               </p>
             </div>
+            <div>
+              <h3 className="mb-2 text-sm tracking-wide-xl uppercase text-gold-600">
+                Live Art Experiences
+              </h3>
+              <p className="font-light leading-relaxed text-ink-500">
+                Bindu also paints live at weddings and private gatherings to engagae the Audience. Mention "Live Art" in
+                your subject line with your date and venue to check availability.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
