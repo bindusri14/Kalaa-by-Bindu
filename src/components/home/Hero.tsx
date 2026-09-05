@@ -95,7 +95,7 @@ export function Hero() {
             variants={item}
             className="max-w-md text-base font-light leading-relaxed text-ivory-100/70"
           >
-            Kurtas, frocks, tote bags and more — each one a canvas, brushed by an artist's hand
+            Kurtis, frocks, tote bags and more — each one a canvas, brushed by an artist's hand
             before it ever becomes yours.
           </motion.p>
 
